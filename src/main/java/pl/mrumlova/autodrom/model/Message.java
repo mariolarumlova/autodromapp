@@ -1,10 +1,17 @@
-package pl.mrumlova.autodromapp;
+package pl.mrumlova.autodrom.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.sql.Date;
 
+@Entity
 public class Message {
 
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; // Long obiektowe, bo może być null
     private String name;
     private String surname;
     private Date beginDate;
@@ -13,16 +20,7 @@ public class Message {
     private String phoneNumber;
     private String email;
     private String celebrity;
-    private long categoryId;
-    private Event category;
-
-    public Message() {
-    }
-
-    public Message(String name, long categoryId) {
-        this.name = name;
-        this.categoryId = categoryId;
-    }
+    private Long categoryId;
 
     public long getId() {
         return id;
@@ -102,13 +100,5 @@ public class Message {
 
     public void setCategoryId(long categoryId) {
         this.categoryId = categoryId;
-    }
-
-    public Event getCategory() {
-        return category;
-    }
-
-    public void setCategory(Event category) {
-        this.category = category;
     }
 }
