@@ -7,50 +7,50 @@
 </head>
 <body>
 <div style="width: 50%; margin: auto; text-align: center">
-    <h1>Podaj szczegóły oferty</h1>
+    <h1>Podaj szczegóły oferty</h1><br>
     <form action="/save" th:object="${newMessage}" method="post">
-        <h2>Dane zgłaszającego:</h2><br>
+        <h2>Dane zgłaszającego</h2><br>
         <div class="form-group">
             <label for="name">Imię</label>
-            <input type="text" class="form-control" id="name" th:field="*{name}">
+            <input type="text" class="form-control" id="name" th:field="*{name}"
+                   required pattern="[-a-żA-Ż ]+" title="Należy wprowadzać tylko małe i wielkie litery oraz spacje">
         </div>
         <div class="form-group">
             <label for="surname">Nazwisko</label>
-            <input type="text" class="form-control" id="surname" th:field="*{surname}">
+            <input type="text" class="form-control" id="surname" th:field="*{surname}"
+                   required pattern="[-a-żA-Ż ]+" title="Należy wprowadzać tylko małe i wielkie litery oraz spacje">
         </div>
         <div class="form-group">
             <label for="phoneNumber">Numer telefonu</label>
-            <input type="text" class="form-control" id="phoneNumber" th:field="*{phoneNumber}">
+            <input type="text" class="form-control" id="phoneNumber" th:field="*{phoneNumber}"
+                   required pattern="[+0-9]{9,14}" title="Należy wprowadzić 9-14 cyfr, mogą być poprzedzone numerem kierunkowym kraju, np. +48">
         </div>
         <div class="form-group">
             <label for="email">E-mail</label>
-            <input type="text" class="form-control" id="email" th:field="*{email}">
+            <input type="email" class="form-control" id="email" th:field="*{email}">
         </div>
         <br>
-        <h2>Dane dotyczące wydarzenia:</h2><br>
+        <h2>Dane dotyczące wydarzenia</h2><br>
         <div class="form-group">
             <label for="beginDate">Data rozpoczęcia</label>
-            <input type="date" class="form-control" id="beginDate" th:field="*{beginDate}">
+            <input type="date" class="form-control" id="beginDate" th:field="*{beginDate}" required>
         </div>
         <div class="form-group">
             <label for="endDate">Data zakończenia</label>
-            <input type="date" class="form-control" id="endDate" th:field="*{endDate}">
+            <input type="date" class="form-control" id="endDate" th:field="*{endDate}" required>
         </div>
         <div class="form-group">
             <label for="city">Miejscowość</label>
-            <input type="text" class="form-control" id="city" th:field="*{city}">
+            <input type="text" class="form-control" id="city" th:field="*{city}"
+                   required pattern="[-a-żA-Ż ]+" title="Należy wprowadzać tylko małe i wielkie litery oraz spacje">
         </div>
         <div class="form-group">
             <label for="celebrity">Gwiazda wieczoru</label>
             <input type="text" class="form-control" id="celebrity" th:field="*{celebrity}">
         </div>
-<!--        <div class="form-group">
-            <label for="categoryId">Kategoria imprezy</label>
-            <input type="number" class="form-control" id="categoryId" th:field="*{categoryId}">
-        </div>-->
         <div class="form-group">
             <label for="category">Rodzaj wydarzenia</label>
-            <select th:field="*{category}" class="form-control" id="category">
+            <select th:field="*{category}" class="form-control" id="category" required>
                 <option value="">--</option>
                 <option th:each="category: ${categories}"
                         th:value="${category.id}"
