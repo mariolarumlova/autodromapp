@@ -12,9 +12,9 @@
         <form action="/sorting" method="post" style="margin-left: 10px">
             <h6>Sortowanie wyników</h6>
             Sortuj po:
-            <input type="radio" value="0" name="option" checked> Nazwisko nadawcy,
-            <input type="radio" value="1" name="option"> Data rozpoczęcia wydarzenia,
-            <input type="radio" value="2" name="option"> Miejscowość,
+            <input type="radio" value="0" name="option" checked> Nazwisko nadawcy
+            <input type="radio" value="1" name="option"> Data rozpoczęcia wydarzenia
+            <input type="radio" value="2" name="option"> Miejscowość
             <input type="radio" value="3" name="option"> Data nadesłania zgłoszenia
             <input type="checkbox" name="descending"> Sortowanie malejąco
 
@@ -31,13 +31,12 @@
                         th:utext="${category.name}"/>
             </select>-->
             Filtruj po dacie:
-            <input type="radio" name="radio" value="0">rozpoczęcia,
-            <input type="radio" name="radio" value="1">zakończenia,
-            <input type="radio" name="radio" value="2">nadesłania,
-            <input type="radio" name="radio" value="3">edycji <br>
-            Od: <input name="border" type="date" style="width: 50px">
-            Do: <input name="border" type="date" style="width: 50px"> <br>
-            <button type="submit" class="btn btn-primary" name="searchBtn">Szukaj</button> <br>
+            <input type="radio" name="radio" value="0">rozpoczęcia
+            <input type="radio" name="radio" value="1">zakończenia
+            <input type="radio" name="radio" value="2">nadesłania
+            <input type="radio" name="radio" value="3">edycji
+            Od: <input name="borderFrom" type="date" style="width: 200px">
+            <button type="submit" class="btn btn-primary" name="searchBtn">Filtruj</button> <br>
         </form>
 
     <form action="/inbox" method="get">

@@ -38,4 +38,6 @@ public class MessageService {
         message.setUpdateDate(dateFormat.format(new Date()));
     }
 
+
+
 }

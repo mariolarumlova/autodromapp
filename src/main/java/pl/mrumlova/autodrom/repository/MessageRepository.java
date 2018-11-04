@@ -21,19 +21,23 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
     @Query("select m from Message m order by m.saveDate")
     List<Message> orderBySaveDate();
 
-    @Query("select m from Message m where str_to_date(m.beginDate, %Y-%m-%d)>=str_to_date(borderFrom, %Y-%m-%d) " +
-            "and str_to_date(m.endDate, %Y-%m-%d)<=str_to_date(borderTo, %Y-%m-%d)")
-    List<Message> getMessagesWhereBeginDateIs(@Param("borderFrom") String borderFrom, @Param("borderTo") String borderTo);
+    @Query(value="select *" +
+            "from message m" +
+            "where m.begin_date >= :borderFrom", nativeQuery = true)
+    List<Message> getMessagesWhereBeginDateIs(@Param("borderFrom") String borderFrom);
 
-    @Query("select m from Message m where str_to_date(m.endDate, %Y-%m-%d)>=str_to_date(borderFrom, %Y-%m-%d) " +
-            "and str_to_date(m.endDate, %Y-%m-%d)<=str_to_date(borderTo, %Y-%m-%d)")
-    List<Message> getMessagesWhereEndDateIs(@Param("borderFrom") String borderFrom, @Param("borderTo") String borderTo);
+    @Query(value="select *" +
+            "from message m" +
+            "where m.end_date >= :borderFrom", nativeQuery = true)
+    List<Message> getMessagesWhereEndDateIs(@Param("borderFrom") String borderFrom);
 
-    @Query("select m from Message m where str_to_date(m.saveDate, %Y-%m-%d)>=str_to_date(borderFrom, %Y-%m-%d) " +
-            "and str_to_date(m.endDate, %Y-%m-%d)<=str_to_date(borderTo, %Y-%m-%d)")
-    List<Message> getMessagesWhereSaveDateIs(@Param("borderFrom") String borderFrom, @Param("borderTo") String borderTo);
+    @Query(value="select *" +
+            "from message m" +
+            "where m.save_date >= :borderFrom", nativeQuery = true)
+    List<Message> getMessagesWhereSaveDateIs(@Param("borderFrom") String borderFrom);
 
-    @Query("select m from Message m where str_to_date(m.updateDate, %Y-%m-%d)>=str_to_date(borderFrom, %Y-%m-%d) " +
-            "and str_to_date(m.endDate, %Y-%m-%d)<=str_to_date(borderTo, %Y-%m-%d)")
-    List<Message> getMessagesWhereUpdateDateIs(@Param("borderFrom") String borderFrom, @Param("borderTo") String borderTo);
+    @Query(value="select *" +
+            "from message m" +
+            "where m.update_date >= :borderFrom", nativeQuery = true)
+    List<Message> getMessagesWhereUpdateDateIs(@Param("borderFrom") String borderFrom);
 }
