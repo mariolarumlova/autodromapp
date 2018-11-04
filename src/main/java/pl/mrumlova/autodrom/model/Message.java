@@ -1,9 +1,6 @@
 package pl.mrumlova.autodrom.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
@@ -14,19 +11,26 @@ public class Message {
     private Long id; // Long obiektowe, bo może być null
     private String name;
     private String surname;
-    private Date beginDate;
-    private Date endDate;
+    private String beginDate;
+    private String endDate;
     private String city;
     private String phoneNumber;
     private String email;
     private String celebrity;
-    private Long categoryId;
+    //private Long categoryId;
+    @ManyToOne
+    private Event category;
 
-    public long getId() {
+    public Message() {
+        this.name = "imie";
+        //this.categoryId = Long.parseLong(Integer.toString(1));
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -46,19 +50,19 @@ public class Message {
         this.surname = surname;
     }
 
-    public Date getBeginDate() {
+    public String getBeginDate() {
         return beginDate;
     }
 
-    public void setBeginDate(Date beginDate) {
-        this.beginDate = beginDate;
-    }
-
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setBeginDate(String beginDate) {
+        this.beginDate = beginDate;
+    }
+
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
@@ -94,11 +98,19 @@ public class Message {
         this.celebrity = celebrity;
     }
 
-    public long getCategoryId() {
-        return categoryId;
+//    public int getCategoryId() {
+//        return Integer.parseInt(categoryId.toString());
+//    }
+//
+//    public void setCategoryId(int categoryId) {
+//        this.categoryId = Long.parseLong(Integer.toString(categoryId));
+//    }
+
+    public Event getCategory() {
+        return category;
     }
 
-    public void setCategoryId(long categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(Event category) {
+        this.category = category;
     }
 }

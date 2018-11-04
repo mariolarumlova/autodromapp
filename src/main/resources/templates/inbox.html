@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>Wszystkie oferty</title>
+</head>
+<body>
+    <ol>
+        <li th:each="message: ${messages}" th:text="|${message.name} - ${message.city}|"></li>
+    </ol>
+</body>
+</html>

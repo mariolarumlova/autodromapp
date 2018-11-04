@@ -5,12 +5,12 @@ insert into event(name, description) values
   ('Wynajem', 'impreza zamknięta płatna z góry'),
   ('Jarmark', 'impreza długoterminowa');
 
-insert into message(name, category_id) values
-  ('Mariola', 1),
-  ('Zdenek', 2),
-  ('Grzesiu', 1),
-  ('Zdzisia', 2),
-  ('Krzysiu', 2),
-  ('Paweł', 3),
-  ('Michał', 3),
-  ('Zdenek', 3);
+insert into message(name, city) values
+  ('Mariola', "Wrocław"),
+  ('Zdenek', "Hradec Kralove"),
+  ('Grzesiu', "Pierwoszów"),
+  ('Zdzisia', "Sulików"),
+  ('Krzysiu', "Rzeszów"),
+  ('Paweł', "Wrocław"),
+  ('Michał', "Krzyki"),
+  ('Zdenek', "Wisznia Mała");

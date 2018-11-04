@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Wyślij ofertę</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+<div style="width: 500px; margin: auto">
+    <h1>Podaj szczegóły oferty</h1>
+    <form action="/save" th:object="${newMessage}" method="post">
+        <h2>Dane zgłaszającego:</h2><br>
+        <div class="form-group">
+            <label for="name">Imię</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}">
+        </div>
+        <div class="form-group">
+            <label for="surname">Nazwisko</label>
+            <input type="text" class="form-control" id="surname" th:field="*{surname}">
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber">Numer telefonu</label>
+            <input type="text" class="form-control" id="phoneNumber" th:field="*{phoneNumber}">
+        </div>
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="text" class="form-control" id="email" th:field="*{email}">
+        </div>
+        <br>
+        <h2>Dane dotyczące wydarzenia:</h2><br>
+        <div class="form-group">
+            <label for="beginDate">Data rozpoczęcia</label>
+            <input type="date" class="form-control" id="beginDate" th:field="*{beginDate}">
+        </div>
+        <div class="form-group">
+            <label for="endDate">Data zakończenia</label>
+            <input type="date" class="form-control" id="endDate" th:field="*{endDate}">
+        </div>
+        <div class="form-group">
+            <label for="city">Miejscowość</label>
+            <input type="text" class="form-control" id="city" th:field="*{city}">
+        </div>
+        <div class="form-group">
+            <label for="celebrity">Gwiazda wieczoru</label>
+            <input type="text" class="form-control" id="celebrity" th:field="*{celebrity}">
+        </div>
+<!--        <div class="form-group">
+            <label for="categoryId">Kategoria imprezy</label>
+            <input type="number" class="form-control" id="categoryId" th:field="*{categoryId}">
+        </div>-->
+        <button type="submit" class="btn btn-primary">Wyślij</button>
+    </form>
+
+</div>
+</body>
+</html>
