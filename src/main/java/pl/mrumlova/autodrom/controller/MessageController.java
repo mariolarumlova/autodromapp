@@ -75,14 +75,13 @@ public class MessageController {
     public String updateForm(Model model, @PathVariable Long id){
         Optional<Message> messageById = messageRepository.findById(id);
         messageById.ifPresent(message -> model.addAttribute("message", message));
+        model.addAttribute("categories", eventRepository.findAll());
         return messageById.map(message -> "updatemessage").orElse("nomessage");
     }
 
     @PostMapping("/update")
     public String updateMessage(Message message) {
-        dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        message.setUpdateDate(dateFormat.format(new Date()));
-        messageRepository.save(message);
+        messageService.update(message);
         return "redirect:/inbox";
     }
 }

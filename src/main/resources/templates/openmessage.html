@@ -53,7 +53,7 @@
     </table>
 
     <img th:src="@{/edit.png}" style="height: 30px"/>
-    <a th:href="@{/update}" style="font-size: medium">Edytuj zgłoszenie</a>
+    <a th:href="@{|/update/${message.id}|}" style="font-size: medium">Edytuj zgłoszenie</a>
     <img th:src="@{/delete.png}" style="height: 30px"/>
     <a th:href="@{|/delete/${message.id}|}" style="font-size: medium">Usuń zgłoszenie</a>
 </div>
