@@ -10,10 +10,7 @@ import pl.mrumlova.autodrom.repository.EventRepository;
 import pl.mrumlova.autodrom.repository.MessageRepository;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 public class MessageController {
@@ -21,6 +18,7 @@ public class MessageController {
     private MessageRepository messageRepository;
     private EventRepository eventRepository;
     private MessageService messageService;
+    List<Message> allMessages;
     SimpleDateFormat dateFormat;
 
     @Autowired
@@ -28,6 +26,7 @@ public class MessageController {
         this.messageRepository = messageRepository;
         this.messageService = messageService;
         this.eventRepository = eventRepository;
+        this.allMessages = messageRepository.findAll();
     }
 
     @RequestMapping("/")
@@ -48,12 +47,12 @@ public class MessageController {
         message.setSaveDate(dateFormat.format(new Date()));
         message.setUpdateDate(dateFormat.format(new Date()));
         messageRepository.save(message);
+        allMessages = messageRepository.findAll();
         return "redirect:/inbox";
     }
 
     @GetMapping("/inbox")
     public String allMessages(Model model) {
-        List<Message> allMessages = messageRepository.findAll();
         model.addAttribute("messages", allMessages);
         return "inbox";
     }
@@ -68,6 +67,7 @@ public class MessageController {
     @GetMapping("/delete/{id}")
     public String deleteMessage(@PathVariable Long id) {
         messageRepository.deleteById(id);
+        allMessages = messageRepository.findAll();
         return "redirect:/inbox";
     }
 
@@ -82,6 +82,47 @@ public class MessageController {
     @PostMapping("/update")
     public String updateMessage(Message message) {
         messageService.update(message);
+        allMessages = messageRepository.findAll();
         return "redirect:/inbox";
     }
+
+    @PostMapping("/sorting")
+    public String sortingMethod(@RequestParam String option,
+                                @RequestParam(value = "descending", required = false) String descending){
+        switch (option){
+            case "0": allMessages = messageRepository.orderBySurname();
+                break;
+            case "1": allMessages = messageRepository.orderByBeginDate();
+                break;
+            case "2": allMessages = messageRepository.orderByCity();
+                break;
+            case "3": allMessages = messageRepository.orderBySaveDate();
+                break;
+        }
+        if (descending != null) {
+            Collections.reverse(allMessages);
+        }
+        return "redirect:/inbox";
+    }
+
+    /*@PostMapping("/filtering")
+    public String filteringMethod(@RequestParam String border,@RequestParam String radio){
+
+        if(border.equals("")||(radio.isEmpty()))// radio is empty nie dziala
+            return "redirect:/";
+
+        int value=Integer.parseInt(border);
+        switch (radio){
+            case "1": allMessages= messageRepository.getProductsWhereThicknessIs(value);
+                break;
+            case "2": allMessages= messageRepository.getProductsWhereWidthIs(value);
+                break;
+            case "3": allMessages= messageRepository.getProductsWhereLengthIs(value);
+                break;
+            case "4": allMessages= messageRepository.getProductsWhereQuantityIs(value);
+                break;
+        }
+
+        return "redirect:/";
+    }*/
 }
