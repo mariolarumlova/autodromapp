@@ -43,11 +43,12 @@ public class MessageController {
     }
 
     @PostMapping("/save")
-    public String sendMessage(Message message) {
+    public String addMessage(Message message) {
         dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         message.setSaveDate(dateFormat.format(new Date()));
+        message.setUpdateDate(dateFormat.format(new Date()));
         messageRepository.save(message);
-        return "redirect:/inbox"; // TODO: wcześniej było success
+        return "redirect:/inbox";
     }
 
     @GetMapping("/inbox")
@@ -65,16 +66,23 @@ public class MessageController {
     }
 
     @GetMapping("/delete/{id}")
-    @ResponseBody
     public String deleteMessage(@PathVariable Long id) {
         messageRepository.deleteById(id);
-        return "Usunięto ofertę o id " + id;
+        return "redirect:/inbox";
     }
 
-    @GetMapping("/update")
-    @ResponseBody
-    public String updateMessage(){
-        messageService.update();
-        return "Zaktualizowana oferta";
+    @GetMapping("/update/{id}")
+    public String updateForm(Model model, @PathVariable Long id){
+        Optional<Message> messageById = messageRepository.findById(id);
+        messageById.ifPresent(message -> model.addAttribute("message", message));
+        return messageById.map(message -> "updatemessage").orElse("nomessage");
+    }
+
+    @PostMapping("/update")
+    public String updateMessage(Message message) {
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        message.setUpdateDate(dateFormat.format(new Date()));
+        messageRepository.save(message);
+        return "redirect:/inbox";
     }
 }

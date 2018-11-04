@@ -7,7 +7,7 @@
 
 </head>
 <body>
-<div  style="width: 40%; margin: auto">
+<div  style="width: 40%; margin: auto; text-align: center">
     <h1>Szczegóły wiadomości</h1>
     <table class="table">
         <tr>
@@ -51,6 +51,11 @@
             <td th:text="${message.description}"></td>
         </tr>
     </table>
+
+    <img th:src="@{/edit.png}" style="height: 30px"/>
+    <a th:href="@{/update}" style="font-size: medium">Edytuj zgłoszenie</a>
+    <img th:src="@{/delete.png}" style="height: 30px"/>
+    <a th:href="@{|/delete/${message.id}|}" style="font-size: medium">Usuń zgłoszenie</a>
 </div>
 </body>
 </html>

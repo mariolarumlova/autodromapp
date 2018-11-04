@@ -14,6 +14,7 @@ public class Message {
     private String beginDate;
     private String endDate;
     private String saveDate;
+    private String updateDate;
     private String city;
     private String phoneNumber;
     private String email;
@@ -75,6 +76,14 @@ public class Message {
 
     public void setSaveDate(String saveDate) {
         this.saveDate = saveDate;
+    }
+
+    public String getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(String updateDate) {
+        this.updateDate = updateDate;
     }
 
     public String getCity() {
