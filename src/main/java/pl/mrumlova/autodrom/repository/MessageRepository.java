@@ -23,21 +23,26 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
 
     @Query(value="select * " +
             "from message m " +
-            "where m.begin_date >= :borderFrom", nativeQuery = true)
-    List<Message> getMessagesWhereBeginDateIs(@Param("borderFrom") String borderFrom);
+            "where m.category_id = :categoryId", nativeQuery = true)
+    List<Message> getMessagesWhereCategoryIdIs(@Param("categoryId") Long categoryId);
 
     @Query(value="select * " +
             "from message m " +
-            "where m.end_date >= :borderFrom", nativeQuery = true)
-    List<Message> getMessagesWhereEndDateIs(@Param("borderFrom") String borderFrom);
+            "where m.begin_date between :borderFrom and :borderTo", nativeQuery = true)
+    List<Message> getMessagesWhereBeginDateIs(@Param("borderFrom") String borderFrom, @Param("borderTo") String borderTo);
 
     @Query(value="select * " +
             "from message m " +
-            "where m.save_date >= :borderFrom", nativeQuery = true)
-    List<Message> getMessagesWhereSaveDateIs(@Param("borderFrom") String borderFrom);
+            "where m.end_date between :borderFrom and :borderTo", nativeQuery = true)
+    List<Message> getMessagesWhereEndDateIs(@Param("borderFrom") String borderFrom, @Param("borderTo") String borderTo);
 
     @Query(value="select * " +
             "from message m " +
-            "where m.update_date >= :borderFrom", nativeQuery = true)
-    List<Message> getMessagesWhereUpdateDateIs(@Param("borderFrom") String borderFrom);
+            "where m.save_date between :borderFrom and :borderTo", nativeQuery = true)
+    List<Message> getMessagesWhereSaveDateIs(@Param("borderFrom") String borderFrom, @Param("borderTo") String borderTo);
+
+    @Query(value="select * " +
+            "from message m " +
+            "where m.update_date between :borderFrom and :borderTo", nativeQuery = true)
+    List<Message> getMessagesWhereUpdateDateIs(@Param("borderFrom") String borderFrom, @Param("borderTo") String borderTo);
 }
