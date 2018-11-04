@@ -57,6 +57,13 @@ public class MessageController {
         return "inbox";
     }
 
+    @GetMapping("/refresh")
+    public String refreshMessages(Model model) {
+        allMessages = messageRepository.findAll();
+        model.addAttribute("messages", allMessages);
+        return "inbox";
+    }
+
     @GetMapping("/offer/{id}")
     public String openMessage(Model model, @PathVariable Long id) {
         Optional<Message> messageById = messageRepository.findById(id);

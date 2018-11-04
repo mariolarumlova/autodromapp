@@ -21,23 +21,23 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
     @Query("select m from Message m order by m.saveDate")
     List<Message> orderBySaveDate();
 
-    @Query(value="select *" +
-            "from message m" +
+    @Query(value="select * " +
+            "from message m " +
             "where m.begin_date >= :borderFrom", nativeQuery = true)
     List<Message> getMessagesWhereBeginDateIs(@Param("borderFrom") String borderFrom);
 
-    @Query(value="select *" +
-            "from message m" +
+    @Query(value="select * " +
+            "from message m " +
             "where m.end_date >= :borderFrom", nativeQuery = true)
     List<Message> getMessagesWhereEndDateIs(@Param("borderFrom") String borderFrom);
 
-    @Query(value="select *" +
-            "from message m" +
+    @Query(value="select * " +
+            "from message m " +
             "where m.save_date >= :borderFrom", nativeQuery = true)
     List<Message> getMessagesWhereSaveDateIs(@Param("borderFrom") String borderFrom);
 
-    @Query(value="select *" +
-            "from message m" +
+    @Query(value="select * " +
+            "from message m " +
             "where m.update_date >= :borderFrom", nativeQuery = true)
     List<Message> getMessagesWhereUpdateDateIs(@Param("borderFrom") String borderFrom);
 }
