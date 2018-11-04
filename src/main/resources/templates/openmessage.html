@@ -2,10 +2,53 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="'Oferta: ' + ${message.city}">Oferta</title>
+    <title th:text="|Oferta: ${message.beginDate} - ${message.endDate} - ${message.city}|">Oferta</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 </head>
 <body>
-    <h1 th:text="${message.city}"></h1>
-    <p th:text="${message.name}"></p>
+    <h1>Szczegóły wiadomości</h1>
+    <table class="table" style="width: 70%; margin: auto">
+        <tr>
+            <th>Nadawca wiadomości</th>
+            <td th:text="|${message.name} ${message.surname}|"></td>
+        </tr>
+        <tr>
+            <th>Telefon kontaktowy</th>
+            <td th:text="${message.phoneNumber}"></td>
+        </tr>
+        <tr>
+            <th>E-mail</th>
+            <td th:text="${message.email}"></td>
+        </tr>
+        <tr>
+            <th>Data rozpoczęcia wydarzenia</th>
+            <td th:text="${message.beginDate}"></td>
+        </tr>
+        <tr>
+            <th>Data zakończenia wydarzenia</th>
+            <td th:text="${message.endDate}"></td>
+        </tr>
+        <tr>
+            <th>Miejscowość</th>
+            <td th:text="${message.city}"></td>
+        </tr>
+        <tr>
+            <th>Rodzaj wydarzenia</th>
+            <td th:text="${message.category.name}"></td>
+        </tr>
+        <tr>
+            <th>Gwiazda wieczoru</th>
+            <td th:text="${message.celebrity}"></td>
+        </tr>
+        <tr>
+            <th>Data przesłania oferty</th>
+            <td th:text="${message.saveDate}"></td>
+        </tr>
+        <tr>
+            <th>Dodatkowe informacje</th>
+            <td th:text="${message.description}"></td>
+        </tr>
+    </table>
 </body>
 </html>

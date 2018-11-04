@@ -13,10 +13,13 @@ public class Message {
     private String surname;
     private String beginDate;
     private String endDate;
+    private String saveDate;
     private String city;
     private String phoneNumber;
     private String email;
     private String celebrity;
+    @Column(length = 2048)
+    private String description;
     //private Long categoryId;
     @ManyToOne
     private Event category;
@@ -66,6 +69,14 @@ public class Message {
         this.endDate = endDate;
     }
 
+    public String getSaveDate() {
+        return saveDate;
+    }
+
+    public void setSaveDate(String saveDate) {
+        this.saveDate = saveDate;
+    }
+
     public String getCity() {
         return city;
     }
@@ -105,6 +116,15 @@ public class Message {
 //    public void setCategoryId(int categoryId) {
 //        this.categoryId = Long.parseLong(Integer.toString(categoryId));
 //    }
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Event getCategory() {
         return category;

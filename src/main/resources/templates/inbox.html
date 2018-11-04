@@ -3,10 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Wszystkie oferty</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 </head>
 <body>
-    <ol>
-        <li th:each="message: ${messages}" th:text="|${message.name} - ${message.city}|"></li>
-    </ol>
+<table class="table" style="width: 70%; margin: auto">
+    <thead>
+        <th>Nadawca</th>
+        <th>Oferta</th>
+        <th>Data wysłania zgłoszenia</th>
+    </thead>
+    <tbody>
+        <tr th:each="message: ${messages}">
+            <td th:text="|${message.name} ${message.surname}|"></td>
+            <td th:text="|${message.beginDate} - ${message.endDate} - ${message.city}|"></td>
+            <td th:text="${message.saveDate}"></td>
+        </tr>
+    </tbody>
+</table>
 </body>
 </html>
