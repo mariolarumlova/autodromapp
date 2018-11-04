@@ -7,8 +7,9 @@
 
 </head>
 <body>
+<div  style="width: 40%; margin: auto">
     <h1>Szczegóły wiadomości</h1>
-    <table class="table" style="width: 70%; margin: auto">
+    <table class="table">
         <tr>
             <th>Nadawca wiadomości</th>
             <td th:text="|${message.name} ${message.surname}|"></td>
@@ -50,5 +51,6 @@
             <td th:text="${message.description}"></td>
         </tr>
     </table>
+</div>
 </body>
 </html>
