@@ -11,29 +11,35 @@
     <h1>Otrzymane zgłoszenia</h1><br>
         <form action="/sorting" method="post" style="margin-left: 10px">
             <h6>Sortowanie wyników</h6>
-            Wybierz kategorię sortowania:
-            <input type="radio" value="0" name="option" checked> Nazwisko nadawcy,
-            <input type="radio" value="1" name="option"> Data rozpoczęcia wydarzenia,
-            <input type="radio" value="2" name="option"> Miejscowość,
-            <input type="radio" value="3" name="option"> Data nadesłania zgłoszenia<br>
-            <input type="checkbox" name="descending"> Sortowanie malejąco <br>
+            Sortuj po:
+            <input type="radio" value="0" name="option" checked> Nazwisko nadawcy
+            <input type="radio" value="1" name="option"> Data rozpoczęcia wydarzenia
+            <input type="radio" value="2" name="option"> Miejscowość
+            <input type="radio" value="3" name="option"> Data nadesłania zgłoszenia
+            <input type="checkbox" name="descending"> Sortowanie malejąco
 
             <button type="submit" class="btn btn-primary">Sortuj</button> <br>
         </form>
 
-        <!--<form action="/filtering" method="post" style="margin-left: 10px">
+        <form action="/filtering" method="post" style="margin-left: 10px">
             <h6>Filtrowanie wyników</h6>
-            Wybierz wymagany parametr blachy:
-            <input type="radio" name="radio" value="1">grubość,
-            <input type="radio" name="radio" value="2">szerokość,
-            <input type="radio" name="radio" value="3"> długość,
-            <input type="radio" name="radio" value="4">ilość <br>
-            Wartość parametru: <input name="border" type="number" style="width: 50px"> <br>
-            <ul></ul>
-            <button type="submit" class="btn btn-primary" name="searchBtn">Szukaj</button> <br>
-        </form>-->
+            <!--Kategoria:
+            <select th:field="*{category}" class="form-control" id="category">
+                <option value="">&#45;&#45;</option>
+                <option th:each="category: ${categories}"
+                        th:value="${category.id}"
+                        th:utext="${category.name}"/>
+            </select>-->
+            Filtruj po dacie:
+            <input type="radio" name="radio" value="0">rozpoczęcia
+            <input type="radio" name="radio" value="1">zakończenia
+            <input type="radio" name="radio" value="2">nadesłania
+            <input type="radio" name="radio" value="3">edycji
+            Od: <input name="borderFrom" type="date" style="width: 200px">
+            <button type="submit" class="btn btn-primary" name="searchBtn">Filtruj</button> <br>
+        </form>
 
-    <form action="/inbox" method="get">
+    <form action="/refresh" method="get">
         <button type="submit" class="btn btn-primary">Wyczyść filtry</button> <br></form>
 
 <table class="table">

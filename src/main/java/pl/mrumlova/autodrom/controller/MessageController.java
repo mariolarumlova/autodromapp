@@ -57,6 +57,13 @@ public class MessageController {
         return "inbox";
     }
 
+    @GetMapping("/refresh")
+    public String refreshMessages(Model model) {
+        allMessages = messageRepository.findAll();
+        model.addAttribute("messages", allMessages);
+        return "inbox";
+    }
+
     @GetMapping("/offer/{id}")
     public String openMessage(Model model, @PathVariable Long id) {
         Optional<Message> messageById = messageRepository.findById(id);
@@ -105,24 +112,23 @@ public class MessageController {
         return "redirect:/inbox";
     }
 
-    /*@PostMapping("/filtering")
-    public String filteringMethod(@RequestParam String border,@RequestParam String radio){
+    @PostMapping("/filtering")
+    public String filteringMethod(@RequestParam String borderFrom, @RequestParam String radio){
 
-        if(border.equals("")||(radio.isEmpty()))// radio is empty nie dziala
-            return "redirect:/";
+        if(borderFrom.equals("")||(radio.isEmpty()))// radio is empty nie dziala
+            return "redirect:/inbox";
 
-        int value=Integer.parseInt(border);
         switch (radio){
-            case "1": allMessages= messageRepository.getProductsWhereThicknessIs(value);
+            case "0": allMessages= messageRepository.getMessagesWhereBeginDateIs(borderFrom);
                 break;
-            case "2": allMessages= messageRepository.getProductsWhereWidthIs(value);
+            case "1": allMessages= messageRepository.getMessagesWhereEndDateIs(borderFrom);
                 break;
-            case "3": allMessages= messageRepository.getProductsWhereLengthIs(value);
+            case "2": allMessages= messageRepository.getMessagesWhereSaveDateIs(borderFrom);
                 break;
-            case "4": allMessages= messageRepository.getProductsWhereQuantityIs(value);
+            case "3": allMessages= messageRepository.getMessagesWhereUpdateDateIs(borderFrom);
                 break;
         }
 
-        return "redirect:/";
-    }*/
+        return "redirect:/inbox";
+    }
 }
