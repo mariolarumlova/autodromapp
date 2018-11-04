@@ -3,12 +3,16 @@ package pl.mrumlova.autodrom.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import pl.mrumlova.autodrom.Service.MessageService;
+import pl.mrumlova.autodrom.dto.FormDto;
 import pl.mrumlova.autodrom.model.Message;
 import pl.mrumlova.autodrom.repository.EventRepository;
 import pl.mrumlova.autodrom.repository.MessageRepository;
 
+import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -39,16 +43,27 @@ public class MessageController {
     public String addForm(Model model){
         model.addAttribute("newMessage", new Message());
         model.addAttribute("categories", eventRepository.findAll());
+        model.addAttribute("form", new FormDto());
         return "sendmessage";
     }
 
     @PostMapping("/save")
-    public String addMessage(Message message) {
-        dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        message.setSaveDate(dateFormat.format(new Date()));
-        message.setUpdateDate(dateFormat.format(new Date()));
-        messageRepository.save(message);
-        return "redirect:/inbox";
+    public String addMessage(Message message, @Valid @ModelAttribute("form") FormDto form, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+//            List<FieldError> errors = bindingResult.getFieldErrors();
+//            for (FieldError error : errors) {
+//                String field = error.getField();
+//                System.out.println("Field: " + field + " invalid value: " + error.getRejectedValue());
+//            }
+            model.addAttribute("form", form);
+            return "sendmessage";
+        } else {
+            dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            message.setSaveDate(dateFormat.format(new Date()));
+            message.setUpdateDate(dateFormat.format(new Date()));
+            messageRepository.save(message);
+            return "redirect:/inbox";
+        }
     }
 
     @GetMapping("/inbox")

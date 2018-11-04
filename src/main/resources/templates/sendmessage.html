@@ -4,11 +4,24 @@
     <meta charset="UTF-8">
     <title>Wyślij ofertę</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <style type="text/css">
+        .invalid{
+            border: 1px solid red;
+        }
+        .invalid-feedback{
+            display: none;
+        }
+        .invalid~.invalid-feedback{
+            display: block;
+        }
+    </style>
+
 </head>
 <body>
 <div style="width: 50%; margin: auto; text-align: center">
     <h1>Podaj szczegóły oferty</h1>
-    <form action="/save" th:object="${newMessage}" method="post">
+    <form action="/save" th:object="${newMessage}" method="post" novalidate>
         <h2>Dane zgłaszającego:</h2><br>
         <div class="form-group">
             <label for="name">Imię</label>
@@ -24,7 +37,10 @@
         </div>
         <div class="form-group">
             <label for="email">E-mail</label>
-            <input type="text" class="form-control" id="email" th:field="*{email}">
+            <input type="email" class="form-control" id="email" th:field="*{email}" th:errorclass="invalid"/>
+            <div class="invalid-feedback">
+                Wprowadzona wartość jest nieprawidłowa
+            </div>
         </div>
         <br>
         <h2>Dane dotyczące wydarzenia:</h2><br>
