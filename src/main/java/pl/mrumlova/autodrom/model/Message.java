@@ -1,6 +1,7 @@
 package pl.mrumlova.autodrom.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
 @Entity
@@ -22,7 +23,7 @@ public class Message {
     @Column(length = 2048)
     private String description;
     //private Long categoryId;
-    @ManyToOne
+    @ManyToOne @NotNull
     private Event category;
 
     public Message() {

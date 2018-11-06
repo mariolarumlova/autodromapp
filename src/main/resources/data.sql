@@ -3,7 +3,8 @@ insert into event(name, description) values
   ('Dożynki', NULL),
   ('Impreza tematyczna', 'np. Swięto Kwiatów, Dni Wina, Dni Karpia'),
   ('Wynajem', 'impreza zamknięta płatna z góry'),
-  ('Jarmark', 'impreza długoterminowa');
+  ('Jarmark', 'impreza długoterminowa'),
+  ('Inne', NULL);
 
 insert into message(name, surname, city, begin_date, end_date, category_id, save_date, update_date) values
   ('Mariola', 'Rumlova', 'Wrocław', '2018-10-02', '2018-10-03', 1, '2018-11-04', '2018-11-04'),

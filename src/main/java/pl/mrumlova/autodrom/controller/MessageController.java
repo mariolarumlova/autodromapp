@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.mrumlova.autodrom.Service.EventService;
 import pl.mrumlova.autodrom.Service.MessageService;
+import pl.mrumlova.autodrom.model.Event;
 import pl.mrumlova.autodrom.model.Message;
 import pl.mrumlova.autodrom.repository.EventRepository;
 import pl.mrumlova.autodrom.repository.MessageRepository;
@@ -18,15 +20,19 @@ public class MessageController {
     private MessageRepository messageRepository;
     private EventRepository eventRepository;
     private MessageService messageService;
-    List<Message> allMessages;
+    private EventService eventService;
+    private List<Message> allMessages;
+    private List<Event> allCategories;
     SimpleDateFormat dateFormat;
 
     @Autowired
-    public MessageController(MessageRepository messageRepository, MessageService messageService, EventRepository eventRepository) {
+    public MessageController(MessageRepository messageRepository, MessageService messageService, EventRepository eventRepository, EventService eventService) {
         this.messageRepository = messageRepository;
         this.messageService = messageService;
         this.eventRepository = eventRepository;
+        this.eventService = eventService;
         this.allMessages = messageRepository.findAll();
+        this.allCategories = eventRepository.findAll();
     }
 
     @RequestMapping("/")
@@ -37,7 +43,7 @@ public class MessageController {
     @GetMapping("/send")
     public String addForm(Model model){
         model.addAttribute("newMessage", new Message());
-        model.addAttribute("categories", eventRepository.findAll());
+        model.addAttribute("categories", allCategories);
         return "sendmessage";
     }
 
@@ -49,6 +55,12 @@ public class MessageController {
         messageRepository.save(message);
         allMessages = messageRepository.findAll();
         return "redirect:/inbox";
+    }
+
+    @GetMapping("/categories")
+    public String manageEvents(Model model) {
+        model.addAttribute("categories", allCategories);
+        return "categories";
     }
 
     @GetMapping("/inbox")
@@ -82,7 +94,7 @@ public class MessageController {
     public String updateForm(Model model, @PathVariable Long id){
         Optional<Message> messageById = messageRepository.findById(id);
         messageById.ifPresent(message -> model.addAttribute("message", message));
-        model.addAttribute("categories", eventRepository.findAll());
+        model.addAttribute("categories", allCategories);
         return messageById.map(message -> "updatemessage").orElse("nomessage");
     }
 
@@ -130,5 +142,42 @@ public class MessageController {
         }
 
         return "redirect:/inbox";
+    }
+
+    @GetMapping("/addCategory")
+    public String addCategory(Model model){
+        model.addAttribute("newEvent", new Event());
+        return "addcategory";
+    }
+
+    @PostMapping("/saveCategory")
+    public String saveCategory(Event event) {
+        eventRepository.save(event);
+        allCategories = eventRepository.findAll();
+        return "redirect:/categories";
+    }
+
+    @GetMapping("/deleteCategory/{id}")
+    public String deleteCategory(@PathVariable Long id) {
+        messageRepository.deleteMessagesWhereCategoryIdIs(id);
+        eventRepository.deleteById(id);
+        allCategories = eventRepository.findAll();
+        allMessages = messageRepository.findAll();
+        return "redirect:/categories";
+    }
+
+    @GetMapping("/updateCategory/{id}")
+    public String updateCategoryForm(Model model, @PathVariable Long id){
+        Optional<Event> eventById = eventRepository.findById(id);
+        eventById.ifPresent(category -> model.addAttribute("category", category));
+        model.addAttribute("categories", allCategories);
+        return eventById.map(category -> "editcategory").orElse("nocategory");
+    }
+
+    @PostMapping("/updateCat")
+    public String updateCategory(Event event) {
+        eventService.update(event);
+        allCategories = eventRepository.findAll();
+        return "redirect:/categories";
     }
 }

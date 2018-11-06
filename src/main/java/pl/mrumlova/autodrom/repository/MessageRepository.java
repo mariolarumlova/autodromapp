@@ -1,13 +1,21 @@
 package pl.mrumlova.autodrom.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 import pl.mrumlova.autodrom.model.Message;
 
+import javax.validation.executable.ValidateOnExecution;
 import java.util.List;
 
 public interface MessageRepository extends JpaRepository<Message, Long> {
+
+    @Transactional
+    @Modifying
+    @Query(value="delete from message where category_id = :categoryId", nativeQuery = true)
+    void deleteMessagesWhereCategoryIdIs(@Param("categoryId") Long categoryId);
 
     @Query("select m from Message m order by m.surname")
     List<Message> orderBySurname();

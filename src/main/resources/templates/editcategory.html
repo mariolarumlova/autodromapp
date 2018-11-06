@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Wyślij ofertę</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+<div style="width: 50%; margin: auto; text-align: center">
+    <h1>Podaj nazwę i opis kategorii</h1><br>
+    <form action="/updateCat" th:object="${category}" method="post">
+        <h2>Dane zgłaszającego</h2><br>
+        <div class="form-group">
+            <label for="name">Imię</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}"
+                   required pattern="[-a-żA-Ż ]+" title="Należy wprowadzać tylko małe i wielkie litery oraz spacje">
+        </div>
+        <div class="form-group">
+            <label for="description">Dodatkowe informacje</label>
+            <textarea class="form-control" id="description" rows="10" th:field="*{description}"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Wyślij</button>
+    </form>
+
+    <img th:src="@{/logo.png}" style="height: 30px"/>
+    <a th:href="@{/}" style="font-size: medium">Powrót do strony głównej</a>
+
+</div>
+</body>
+</html>

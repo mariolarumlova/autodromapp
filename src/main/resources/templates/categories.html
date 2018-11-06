@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>Wszystkie oferty</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+<body>
+<div style="width: 70%; margin: auto; text-align: center">
+    <h1>Rodzaje wydarzeń</h1><br>
+
+    <table class="table">
+        <thead>
+        <th>Nazwa</th>
+        <th>Opis</th>
+        <th>Edytuj</th>
+        <th>Usuń</th>
+        </thead>
+        <tbody>
+        <tr th:each="category: ${categories}">
+            <td th:text="${category.name}"></td>
+            <td th:text="${category.description}"></td>
+            <td><a th:href="@{|/updateCategory/${category.id}|}"><img th:src="@{/edit.png}" style="height: 30px"/></a></td>
+            <td><a th:href="@{|/deleteCategory/${category.id}|}"><img th:src="@{/delete.png}" style="height: 30px"/></a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <img th:src="@{/add.png}" style="height: 30px"/>
+    <a th:href="@{/addCategory}" style="font-size: medium">Dodaj kategorię</a><br>
+    <img th:src="@{/logo.png}" style="height: 30px"/>
+    <a th:href="@{/}" style="font-size: medium">Powrót do strony głównej</a>
+</div>
+</body>
+</html>
