@@ -12,7 +12,7 @@ public class Event {
     private String name;
     private String description;
 
-    @OneToMany(mappedBy = "category") //TODO: Po category czy po czymś innym?
+    @OneToMany(mappedBy = "category")
     private List<Message> offers;
 
     public Long getId() {
