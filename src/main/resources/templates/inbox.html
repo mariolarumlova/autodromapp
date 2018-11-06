@@ -32,11 +32,12 @@
                         th:utext="${category.name}"/>
             </select>-->
             Filtruj po dacie:
-            <input type="radio" name="radio" value="0">rozpoczęcia
+            <input type="radio" name="radio" value="0" checked>rozpoczęcia
             <input type="radio" name="radio" value="1">zakończenia
             <input type="radio" name="radio" value="2">nadesłania
             <input type="radio" name="radio" value="3">edycji
-            Od: <input name="borderFrom" type="date" style="width: 200px">
+            Od: <input name="borderFrom" type="date" style="width: 150px">
+            Do: <input name="borderTo" type="date" style="width: 150px">
             <button type="submit" class="btn btn-primary" name="searchBtn">Filtruj</button> <br>
         </form>
 

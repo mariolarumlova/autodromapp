@@ -9,9 +9,8 @@
 <div style="width: 50%; margin: auto; text-align: center">
     <h1>Podaj nazwę i opis kategorii</h1><br>
     <form action="/saveCategory" th:object="${newEvent}" method="post">
-        <h2>Dane zgłaszającego</h2><br>
         <div class="form-group">
-            <label for="name">Imię</label>
+            <label for="name">Nazwa</label>
             <input type="text" class="form-control" id="name" th:field="*{name}"
                    required pattern="[-a-żA-Ż ]+" title="Należy wprowadzać tylko małe i wielkie litery oraz spacje">
         </div>

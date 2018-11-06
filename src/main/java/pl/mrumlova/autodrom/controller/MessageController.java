@@ -125,19 +125,19 @@ public class MessageController {
     }
 
     @PostMapping("/filtering")
-    public String filteringMethod(@RequestParam String borderFrom, @RequestParam String radio){
+    public String filteringMethod(@RequestParam String borderFrom, @RequestParam String borderTo, @RequestParam String radio){
 
-        if(borderFrom.equals("")||(radio.isEmpty()))// radio is empty nie dziala
-            return "redirect:/inbox";
+        if(borderFrom.equals("")) borderFrom = "1970-01-01";
+        if(borderTo.equals("")) borderTo = "3000-12-31";
 
         switch (radio){
-            case "0": allMessages= messageRepository.getMessagesWhereBeginDateIs(borderFrom);
+            case "0": allMessages= messageRepository.getMessagesWhereBeginDateIs(borderFrom, borderTo);
                 break;
-            case "1": allMessages= messageRepository.getMessagesWhereEndDateIs(borderFrom);
+            case "1": allMessages= messageRepository.getMessagesWhereEndDateIs(borderFrom, borderTo);
                 break;
-            case "2": allMessages= messageRepository.getMessagesWhereSaveDateIs(borderFrom);
+            case "2": allMessages= messageRepository.getMessagesWhereSaveDateIs(borderFrom, borderTo);
                 break;
-            case "3": allMessages= messageRepository.getMessagesWhereUpdateDateIs(borderFrom);
+            case "3": allMessages= messageRepository.getMessagesWhereUpdateDateIs(borderFrom, borderTo);
                 break;
         }
 
