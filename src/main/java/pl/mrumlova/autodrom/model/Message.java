@@ -9,7 +9,7 @@ public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Long obiektowe, bo może być null
+    private Long id;
     private String name;
     private String surname;
     private String beginDate;
@@ -27,8 +27,6 @@ public class Message {
     private Event category;
 
     public Message() {
-        this.name = "imie";
-        //this.categoryId = Long.parseLong(Integer.toString(1));
     }
 
     public Long getId() {
