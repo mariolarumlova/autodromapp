@@ -22,17 +22,17 @@
             <button type="submit" class="btn btn-primary">Sortuj</button> <br>
         </form>
 
-            <img th:src="@{/search.png}" style="height: 30px"/> <h6>Filtrowanie wyników</h6>
-        <form action="/filteringCategory" th:object="${category}" method="post" style="margin-left: 10px">
-        Kategoria:
-            <select th:field="*{categoryy}" class="form-control" name="category">
-                <option value="" name="category">--</option>
-                <option th:each="categoryy: ${categories}"
-                        th:value="${categoryy.id}"
-                        th:utext="${categoryy.name}"/>
+        <form action="/filteringCategory"  method="post" th:object=${category} style="margin-left: 10px">
+            <img th:src="@{/fireworks.png}" style="height: 30px"/> <h6>Rodzaj wydarzenia</h6>
+            <select class="form-control" name="category">
+                <option th:each="category: ${categories}"
+                        th:value="${category.id}"
+                        th:utext="${category.name}"/>
             </select>
             <button type="submit" class="btn btn-primary" name="searchBtn">Filtruj</button> <br>
         </form>
+
+        <img th:src="@{/search.png}" style="height: 30px"/> <h6>Filtrowanie wyników</h6>
         <form action="/filtering" method="post" style="margin-left: 10px">
             Filtruj po dacie:
             <input type="radio" name="radio" value="0" checked>rozpoczęcia

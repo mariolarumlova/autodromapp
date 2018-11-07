@@ -15,6 +15,13 @@ public class Event {
     @OneToMany(mappedBy = "category")
     private List<Message> offers;
 
+    public boolean isSelected(Integer userId){
+        if (userId != null) {
+            return userId.equals(id);
+        }
+        return false;
+    }
+
     public Long getId() {
         return id;
     }
