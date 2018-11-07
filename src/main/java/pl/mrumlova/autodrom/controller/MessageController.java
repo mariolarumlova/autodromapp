@@ -64,15 +64,17 @@ public class MessageController {
     }
 
     @GetMapping("/inbox")
-    public String allMessages(Model model) {
+    public String allMessages(Model model, @ModelAttribute("category") Event category) {
         model.addAttribute("messages", allMessages);
+        model.addAttribute("categories", eventRepository.findAll());
         return "inbox";
     }
 
     @GetMapping("/refresh")
-    public String refreshMessages(Model model) {
+    public String refreshMessages(Model model, @ModelAttribute("category") Event category) {
         allMessages = messageRepository.findAll();
         model.addAttribute("messages", allMessages);
+        model.addAttribute("categories", eventRepository.findAll());
         return "inbox";
     }
 
@@ -121,6 +123,13 @@ public class MessageController {
         if (descending != null) {
             Collections.reverse(allMessages);
         }
+        return "redirect:/inbox";
+    }
+
+    @PostMapping("/filteringCategory")
+    public String filteringCategoryMethod(@ModelAttribute("category") Event category){
+        Long categoryId = category.getId();
+        allMessages = messageRepository.getMessagesWhereCategoryIdIs(categoryId);
         return "redirect:/inbox";
     }
 
