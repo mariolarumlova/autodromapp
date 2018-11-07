@@ -1,0 +1,47 @@
+.center-block {
+    width:650px;
+    padding:30px;
+    background-color:#ffffff;
+    color:#ec8007;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.headtext {
+    font-family: 'Corben', Georgia, Times, serif;
+    font-size: 40px;
+    line-height: 55px;
+}
+.regulartext {
+    font-family: 'Nobile', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 25px;
+}
+input {
+    font-family: 'Nobile', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 25px;
+}
+textarea {
+    font-family: 'Nobile', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 25px;
+}
+button {
+    font-family: 'Nobile', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 25px;
+}
+a {
+    font-family: 'Nobile', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 25px;
+}
+body {
+    background: url("/swirl_pattern.png") repeat 0 0;
+}
+table {
+    font-family: 'Nobile', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 25px;
+}

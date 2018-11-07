@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Wyślij ofertę</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Corben" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nobile" rel="stylesheet">
 </head>
 <body>
-<div style="width: 50%; margin: auto; text-align: center">
-    <h1>Podaj szczegóły oferty</h1><br>
+<div class="center=block"; style="width: 50%; margin: auto; text-align: center">
+    <h1 class="headtext">Podaj szczegóły oferty</h1><br>
     <form action="/update" th:object="${message}" method="post">
         <input type="hidden" class="form-control" id="id" th:field="*{id}">
         <h2>Dane zgłaszającego:</h2><br>
