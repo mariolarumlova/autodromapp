@@ -2,14 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="|Oferta: ${message.beginDate} - ${message.endDate} - ${message.city}|">Oferta</title>
+    <title>Oferta</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Corben" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nobile" rel="stylesheet">
 </head>
 <body>
-<div  class="center-block"; style="width: 40%; margin: auto; text-align: center">
+<div class="center-block"; style="width: 40%; margin: auto; text-align: center">
     <h1 class="headtext">Szczegóły wiadomości</h1><br>
     <table class="table">
         <tr>
@@ -54,14 +54,18 @@
         </tr>
     </table>
 
+    <br>
     <img th:src="@{/edit.png}" style="height: 30px"/>
-    <a th:href="@{|/update/${message.id}|}" style="font-size: medium">Edytuj zgłoszenie</a>
+    <a th:href="@{|/update/${message.id}|}">Edytuj zgłoszenie</a>
+    <br><br>
     <img th:src="@{/delete.png}" style="height: 30px"/>
-    <a th:href="@{|/delete/${message.id}|}" style="font-size: medium">Usuń zgłoszenie</a> <br>
+    <a th:href="@{|/delete/${message.id}|}">Usuń zgłoszenie</a>
+    <br><br>
     <img th:src="@{/mailbox.png}" style="height: 30px"/>
-    <a th:href="@{/inbox}" style="font-size: medium">Powrót do wszystkich ofert</a><br>
+    <a th:href="@{/inbox}">Powrót do wszystkich ofert</a>
+    <br><br>
     <img th:src="@{/logo.png}" style="height: 30px"/>
-    <a th:href="@{/}" style="font-size: medium">Powrót do strony głównej</a>
+    <a th:href="@{/}">Powrót do strony głównej</a>
 </div>
 </body>
 </html>

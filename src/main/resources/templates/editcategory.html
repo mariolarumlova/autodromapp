@@ -22,11 +22,12 @@
             <label for="description">Dodatkowe informacje</label>
             <textarea class="form-control" id="description" rows="10" th:field="*{description}"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Wyślij</button>
+        <button type="submit" class="btn btn-light">Wyślij</button>
     </form>
 
+    <br>
     <img th:src="@{/logo.png}" style="height: 30px"/>
-    <a th:href="@{/}" style="font-size: medium">Powrót do strony głównej</a>
+    <a th:href="@{/}">Powrót do strony głównej</a>
 
 </div>
 </body>

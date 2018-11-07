@@ -11,8 +11,8 @@
 <body>
 <div class="center-block"; style="width: 70%;  margin: auto; text-align: center">
     <h1 class="headtext">Otrzymane zgłoszenia</h1><br>
-        <form action="/sorting" method="post" style="margin-left: 10px">
-            <img th:src="@{/sortDown.png}" style="height: 30px"/> <p>Sortowanie wyników</p>
+        <form class="regulartext" action="/sorting" method="post" style="margin-left: 10px;">
+            <img th:src="@{/sortDown.png}" style="height: 30px"/> <p class="smallheadtext">Sortowanie wyników</p>
             Sortuj po:
             <input type="radio" value="0" name="option" checked> Nazwisko nadawcy
             <input type="radio" value="1" name="option"> Data rozpoczęcia wydarzenia
@@ -21,21 +21,22 @@
             <input type="checkbox" name="descending"> Sortowanie malejąco
 
 
-            <button type="submit" class="btn btn-primary">Sortuj</button> <br>
+            <button type="submit" class="btn btn-light">Sortuj</button> <br>
         </form>
 
-        <form action="/filteringCategory"  method="post" th:object=${category} style="margin-left: 10px">
-            <img th:src="@{/fireworks.png}" style="height: 30px"/> <p>Rodzaj wydarzenia</p>
+        <br>
+        <form class="regulartext" action="/filteringCategory"  method="post" th:object=${category} style="margin-left: 10px;">
+            <img th:src="@{/fireworks.png}" style="height: 30px"/> <p class="smallheadtext">Rodzaj wydarzenia</p>
             <select name="category">
                 <option th:each="category: ${categories}"
                         th:value="${category.id}"
                         th:utext="${category.name}"/>
             </select>
-            <button type="submit" class="btn btn-primary" name="searchBtn">Filtruj</button> <br>
+            <button type="submit" class="btn btn-light" name="searchBtn">Filtruj</button> <br>
         </form>
-
-        <img th:src="@{/search.png}" style="height: 30px"/> <p>Filtrowanie wyników</p>
-        <form action="/filtering" method="post" style="margin-left: 10px">
+        <br>
+        <img th:src="@{/search.png}" style="height: 30px"/> <p class="smallheadtext">Filtrowanie wyników</p>
+        <form class="regulartext" action="/filtering" method="post" style="margin-left: 10px;">
             Filtruj po dacie:
             <input type="radio" name="radio" value="0" checked>rozpoczęcia
             <input type="radio" name="radio" value="1">zakończenia
@@ -43,12 +44,13 @@
             <input type="radio" name="radio" value="3">edycji
             Od: <input name="borderFrom" type="date" style="width: 150px">
             Do: <input name="borderTo" type="date" style="width: 150px">
-            <button type="submit" class="btn btn-primary" name="searchBtn">Filtruj</button> <br>
+            <button type="submit" class="btn btn-light" name="searchBtn">Filtruj</button> <br>
         </form>
-
-    <form action="/refresh" method="get">
-        <button type="submit" class="btn btn-primary">Wyczyść filtry</button> <br></form>
-
+        <br>
+        <form action="/refresh" method="get">
+            <button type="submit" class="btn btn-light">Wyczyść filtry</button> <br>
+        </form>
+        <br>
 <table class="table">
     <thead>
         <th>Nadawca</th>
@@ -69,10 +71,12 @@
         </tr>
     </tbody>
 </table>
+    <br>
     <img th:src="@{/add.png}" style="height: 30px"/>
-    <a th:href="@{/send}" style="font-size: medium">Dodaj ofertę</a> <br>
+    <a th:href="@{/send}">Dodaj ofertę</a> <br>
+    <br>
     <img th:src="@{/logo.png}" style="height: 30px"/>
-    <a th:href="@{/}" style="font-size: medium">Powrót do strony głównej</a>
+    <a th:href="@{/}">Powrót do strony głównej</a>
 </div>
 </body>
 </html>

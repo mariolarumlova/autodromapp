@@ -11,7 +11,7 @@
 <body>
 <div class="center-block"; style="width: 70%; margin: auto; text-align: center">
     <h1 class="headtext">Rodzaje wydarzeń</h1><br>
-    <h3 style="color: RED">UWAGA! Usunięcie kategorii wiąże się z usunięciem powiązanych z kategorią ofert!</h3><br>
+    <h3 class="smallheadtext" style="color: RED">UWAGA! Usunięcie kategorii wiąże się z usunięciem powiązanych z kategorią ofert!</h3><br>
 
     <table class="table">
         <thead>
@@ -30,10 +30,12 @@
         </tbody>
     </table>
 
+    <br>
     <img th:src="@{/add.png}" style="height: 30px"/>
-    <a th:href="@{/addCategory}" style="font-size: medium">Dodaj kategorię</a><br>
+    <a th:href="@{/addCategory}">Dodaj kategorię</a><br>
+    <br>
     <img th:src="@{/logo.png}" style="height: 30px"/>
-    <a th:href="@{/}" style="font-size: medium">Powrót do strony głównej</a>
+    <a th:href="@{/}">Powrót do strony głównej</a>
 </div>
 </body>
 </html>

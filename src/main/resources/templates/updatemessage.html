@@ -13,7 +13,7 @@
     <h1 class="headtext">Podaj szczegóły oferty</h1><br>
     <form action="/update" th:object="${message}" method="post">
         <input type="hidden" class="form-control" id="id" th:field="*{id}">
-        <h2>Dane zgłaszającego:</h2><br>
+        <h2 class="smallheadtext">Dane zgłaszającego:</h2><br>
         <div class="form-group">
             <label for="name">Imię</label>
             <input type="text" class="form-control" id="name" th:field="*{name}"
@@ -37,7 +37,7 @@
             <input type="email" class="form-control" id="email" th:field="*{email}">
         </div>
         <br>
-        <h2>Dane dotyczące wydarzenia:</h2><br>
+        <h2 class="smallheadtext">Dane dotyczące wydarzenia:</h2><br>
         <div class="form-group">
             <label for="beginDate">Data rozpoczęcia</label>
             <input type="date" class="form-control" id="beginDate" th:field="*{beginDate}" required>
@@ -69,13 +69,15 @@
             <label for="description">Dodatkowe informacje</label>
             <textarea class="form-control" id="description" rows="10" th:field="*{description}"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Wyślij</button>
+        <button type="submit" class="btn btn-light">Wyślij</button>
     </form>
 
+    <br>
     <img th:src="@{/mailbox.png}" style="height: 30px"/>
-    <a th:href="@{/inbox}" style="font-size: medium">Powrót do wszystkich ofert</a><br>
+    <a th:href="@{/inbox}">Powrót do wszystkich ofert</a><br>
+    <br>
     <img th:src="@{/logo.png}" style="height: 30px"/>
-    <a th:href="@{/}" style="font-size: medium">Powrót do strony głównej</a>
+    <a th:href="@{/}">Powrót do strony głównej</a>
 
 </div>
 </body>
