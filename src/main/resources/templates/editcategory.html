@@ -9,6 +9,7 @@
 <div style="width: 50%; margin: auto; text-align: center">
     <h1>Podaj nazwę i opis kategorii</h1><br>
     <form action="/updateCat" th:object="${category}" method="post">
+        <input type="hidden" class="form-control" id="id" th:field="*{id}">
         <div class="form-group">
             <label for="name">Nazwa</label>
             <input type="text" class="form-control" id="name" th:field="*{name}"
